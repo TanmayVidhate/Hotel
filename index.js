@@ -45,7 +45,7 @@ server.get("/hotels", (req, res) => {
     });
 })
 
-server.post("/hotels", (req, res) => {
+server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
     const { roomNo, type, status, facility, descripation, days } = req.body;
 
     if (!roomNo) {
@@ -123,7 +123,7 @@ server.post("/hotels", (req, res) => {
     
 })
 
-server.get("/hotels/:roomNo", (req, res) => {
+server.get("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
     const { roomNo } = req.params;
 
     let HotelCount = -1;
@@ -148,7 +148,7 @@ server.get("/hotels/:roomNo", (req, res) => {
     })
 })
 
-server.delete("/hotels/:roomNo", (req, res) => {
+server.delete("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
     const { roomNo } = req.params;
 
     let HotelCount = -1;
