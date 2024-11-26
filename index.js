@@ -33,7 +33,7 @@ const HOTELS = [
     }
 ]
 
-server.get("/health", (req, res) => {
+server.get("/health",(req, res) => {
     res.send('Server is Running');
 })
 
