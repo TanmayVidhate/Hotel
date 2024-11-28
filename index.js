@@ -48,57 +48,7 @@ server.get("/hotels", (req, res) => {
 server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
     const { roomNo, type, status, facility, descripation, days } = req.body;
 
-    if (!roomNo) {
-        return res.json({
-            success: false,
-            message: "Please Enter Room No"
-        })
-    }
-
-    if (!type) {
-        return res.json({
-            success: false,
-            message: "Please Enter type"
-        })
-    }
-
-    if (!status) {
-        return res.json({
-            success: false,
-            message: "Please Enter Status"
-        })
-    }
-
-    if (!facility) {
-        return res.json({
-            success: false,
-            message: "Please Enter facility"
-        })
-    }
-
-    if (!descripation) {
-        return res.json({
-            success: false,
-            message: "Please Enter descripation"
-        })
-    }
-
-    if (!days) {
-        return res.json({
-            success: false,
-            message: "Please Enter Remaining Days"
-        })
-    }
-
-    const objTemp = {
-        roomNo,
-        type,
-        status,
-        facility,
-        descripation,
-        days
-    }
-
+   
     const HotelNo = HOTELS.find((Hotel) => {
         if (Hotel.roomNo === roomNo) {
             return Hotel;
@@ -112,7 +62,6 @@ server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
         })
     }
 
-
     HOTELS.push(objTemp);
 
     res.json({
@@ -125,7 +74,7 @@ server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
 
 server.get("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
     const { roomNo } = req.params;
-
+    
     let HotelCount = -1;
 
     HOTELS.map((hotel, index) => {
@@ -171,6 +120,44 @@ server.delete("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
     res.json({
         success: true,
         message: "Data Deleted "
+    })
+})
+
+server.put("/hotels/:roomNo",(req,res)=>{
+    const{roomNo} = req.params;
+    // console.log(roomNo)
+    const{type,descripation,facility,days,status} = req.body;
+
+    let HotelCount = -1;
+
+    HOTELS.map((hotel, index) => {
+        if (hotel.roomNo == roomNo) {
+            HotelCount = index;
+        }
+    })
+
+    if (HotelCount == -1) {
+        return res.json({
+            success: false,
+            message: "Data Not Found"
+        })
+    }
+
+    const hotel = {
+        roomNo,
+        type,
+        descripation,
+        facility,
+        days,
+        status
+    }
+   
+    HOTELS[HotelCount] = hotel;
+
+    res.json({
+        success:true,
+        data:hotel,
+        message:"Data Update"
     })
 })
 
