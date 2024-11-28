@@ -38,7 +38,7 @@ server.get("/health",(req, res) => {
 })
 
 server.get("/hotels", (req, res) => {
-    res.json({
+    res.status(200).json({
         success: true,
         data: HOTELS,
         message: "Hotel Data Fetch"
@@ -64,7 +64,7 @@ server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
     }
 
     if(HotelNo) {
-        return res.json({
+        return res.status(200).json({
             success: false,
             message: "Same Room Number Is Present"
         })
@@ -98,7 +98,7 @@ server.get("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
         })
     }
 
-    res.json({
+    res.status(200).json({
         success: true,
         data: HOTELS[HotelCount],
         message: "Data Found "
@@ -117,7 +117,7 @@ server.delete("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
     })
 
     if (HotelCount == -1) {
-        return res.json({
+        return res.status(404).json({
             success: false,
             message: "Data Not Found"
         })
