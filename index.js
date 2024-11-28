@@ -48,12 +48,20 @@ server.get("/hotels", (req, res) => {
 server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
     const { roomNo, type, status, facility, descripation, days } = req.body;
 
-   
     const HotelNo = HOTELS.find((Hotel) => {
         if (Hotel.roomNo === roomNo) {
             return Hotel;
         }
     })
+
+    const objTemp={
+        roomNo,
+        type,
+        status,
+        facility,
+        descripation,
+        days
+    }
 
     if(HotelNo) {
         return res.json({
@@ -64,7 +72,7 @@ server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
 
     HOTELS.push(objTemp);
 
-    res.json({
+    res.status(201).json({
         success: true,
         message: "Data Add done"
     })
