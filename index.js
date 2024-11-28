@@ -34,7 +34,7 @@ const HOTELS = [
 ]
 
 server.get("/health",(req, res) => {
-    res.send('Server is Running');
+    res.status(200).send('Server is Running');
 })
 
 server.get("/hotels", (req, res) => {
