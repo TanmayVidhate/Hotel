@@ -36,7 +36,7 @@ server.get("/health",(req, res) => {
     res.status(200).send('Server is Running');
 })
 
-server.get("https://hotelappfui.onrender.com/hotels", (req, res) => {
+server.get("/hotels", (req, res) => {
     res.status(200).json({
         success: true,
         data: HOTELS,
@@ -44,7 +44,7 @@ server.get("https://hotelappfui.onrender.com/hotels", (req, res) => {
     });
 })
 
-server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
+server.post("/hotels", (req, res) => {
     const { roomNo, type, status, facility, descripation, days } = req.body;
 
     const HotelNo = HOTELS.find((Hotel) => {
@@ -121,7 +121,7 @@ server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
     
 })
 
-server.get("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
+server.get("/hotels/:roomNo", (req, res) => {
     const { roomNo } = req.params;
     
     let HotelCount = -1;
@@ -146,7 +146,7 @@ server.get("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
     })
 })
 
-server.delete("https://hotelappfui.onrender.com/hotels/:roomNo", (req, res) => {
+server.delete("/hotels/:roomNo", (req, res) => {
     const { roomNo } = req.params;
 
     let HotelCount = -1;
