@@ -2,7 +2,6 @@
 import express from 'express';
 import cors from 'cors';
 const server = express();
-
 server.use(express.json());
 server.use(cors());
 
@@ -37,7 +36,7 @@ server.get("/health",(req, res) => {
     res.status(200).send('Server is Running');
 })
 
-server.get("/hotels", (req, res) => {
+server.get("https://hotelappfui.onrender.com/hotels", (req, res) => {
     res.status(200).json({
         success: true,
         data: HOTELS,
@@ -53,6 +52,48 @@ server.post("https://hotelappfui.onrender.com/hotels", (req, res) => {
             return Hotel;
         }
     })
+
+    if(!roomNo){
+        return res.status(400).json({
+            success:false,
+            message:"Enter Room No"
+        })
+    }
+
+    if(!type){
+        return res.status(400).json({
+            success:false,
+            message:"Enter Room Type"
+        })
+    }
+
+    if(!status){
+        return res.status(400).json({
+            success:false,
+            message:"Enter Room Status"
+        })
+    }
+
+    if(!facility){
+        return res.status(400).json({
+            success:"false",
+            message:"Enter Room Facility"
+        })
+    }
+
+    if(!descripation){
+        return res.status(400).json({
+            success:false,
+            message:"Enter Room Descripation"
+        })
+    }
+
+    if(!days){
+        return res.status(400).json({
+            success:false,
+            message:"Enter days"
+        })
+    }
 
     const objTemp={
         roomNo,
